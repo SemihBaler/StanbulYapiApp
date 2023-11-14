@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "LogIn";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+@model LogInDTO
+<form asp-action="LogIn" asp-controller="Accounts" method="post">
+    <div class="d-flex" style="align-items: center;">
+        <i class="fa-solid fa-user fa-lg mb-4 mt-4"
+           style="padding-right: 10px; color: white"></i>
+        <input asp-for="UserName"
+               type="text"
+               class="form-control mb-4 mt-4"
+               placeholder="User Name" />
+
+    </div>
+    <span asp-validation-for="UserName" class="text-danger"></span>
+    <div class="d-flex" style="align-items: center">
+        <i class="fa-solid fa-lock fa-lg mb-4 mt-4"
+           style="padding-right: 10px; color:  white"></i>
+        <input asp-for="Password"
+               type="password"
+               class="form-control mb-4 mt-4"
+               placeholder="Password" />
+
+    </div>
+    <span asp-validation-for="Password" class="text-danger"></span>
+    <button id="login-btn"
+            class="btn btn-primary mt-4"
+            style="
+                  background-color: white;
+                  font-size: 18px;
+                  border-color: white;
+                  width: 100%;
+                  color: maroon;
+                  font-weight: 600;
+                ">
+        Giriş
+    </button>
+</form>
+<form>
+<button class="btn btn-primary mt-4"  asp-controller="Accounts" asp-action="Logout" >Çıkış Yap</button>
+</form>

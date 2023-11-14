@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model string
+@if (TempData["Success"] is not null)
+{
+    <div class="alert alert-success notification">
+        @TempData["Success"]
+    </div>
+}
+<div class="text-center">
+    <h2>Denemeee</h2>
+</div>
