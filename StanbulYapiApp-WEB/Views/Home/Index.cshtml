@@ -21,7 +21,7 @@
     body {
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('./images/secondImage.png');
+
 }
 .itemAll {
   display: grid;
@@ -32,7 +32,7 @@
   height: 96vh;
 }
 .item-1 {
-  background-color: rgb(241, 241, 241);
+  /* background-color: rgb(241, 241, 241); */
   grid-row: span 3;
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  background-color: #3b3936;
+        background-color: #3b3936;
   color: white;
   height: 4vh;
   display: fixed;
@@ -79,9 +79,15 @@
   background-color: #67998905;
   position: relative;
 }
-.accordion-button:active {
-  background-color: white !important;
+.accordion-button:not(.collapsed) {
+  background-color: #4b4946 !important;
+  color: white !important;
+  border: none !important;
 }
+.accordion {
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0rem white;
+}
+
 .card-body {
   padding: 15px;
   max-height: 800px;
@@ -141,12 +147,12 @@ div {
 #admin {
   min-width: 120px;
   margin: 10px;
-  background-color: #3b3936;
+  background-color:midnightblue;
   color: white;
   font-size: 14px;
 }
 #exit {
-  background-color: #3b3936;
+        background-color: midnightblue;
   color: white;
   margin: 10px;
   font-size: 14px;
@@ -263,6 +269,7 @@ img {
     grid-column: span 3;
   }
 }
+
 </style>
 
 <body>
@@ -352,11 +359,15 @@ img {
                     </li>
                 </ul>
             </div>
-
-            <div class="item-footer">
+            <form class="item-footer">
                 <div id="admin" class="btn btn-primary">Admin Panel</div>
-                <div id="exit" class="btn btn-primary">Çıkış</div>
-            </div>
+                <button asp-action="LogOut"
+                        asp-controller="Accounts"
+                        id="exit"
+                        class="btn btn-primary">
+                    Çıkış
+                </button>
+            </form>
         </div>
 
         <div class="item item-2">
@@ -449,7 +460,7 @@ img {
                 </div>
                 <div class="card-body">
                     <div class="list list-1">
-                        <img src="8.jpg" alt="" />
+                        <img src="./images/firstImage.jpg" alt="" />
                         <p>
                             Lorem ipsum dolor sit, amet consectetur adipisicectetur
                             adipisicing elit. Opectetur adipisium dolor sit, amet
@@ -491,3 +502,4 @@ img {
             crossorigin="anonymous"></script>
 </body>
 </html>
+
