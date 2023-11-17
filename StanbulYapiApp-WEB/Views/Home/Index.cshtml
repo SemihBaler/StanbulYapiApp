@@ -1,13 +1,493 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
-@model string
-@if (TempData["Success"] is not null)
-{
-    <div class="alert alert-success notification">
-        @TempData["Success"]
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous" />
+    <link href="https://fonts.cdnfonts.com/css/open-sans" rel="stylesheet" />
+    <!-- Option 1: Include in HTML -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+</head>
+<style>
+    body {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('./images/secondImage.png');
+}
+.itemAll {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 2fr 3fr 3fr 3fr 3fr;
+  grid-template-rows: 1fr 8fr 1fr;
+  gap: 5px;
+  height: 96vh;
+}
+.item-1 {
+  background-color: rgb(241, 241, 241);
+  grid-row: span 3;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap; /* Prevent buttons from wrapping */
+  overflow-x: auto;
+  max-height: 100vh; /* Set a maximum height */
+  min-width: 150px;
+}
+.item-2 {
+  grid-column: span 2;
+  grid-row: span 2;
+  margin-top: 5%;
+}
+.item-3 {
+  grid-column: span 2;
+  grid-row: span 2;
+  margin-top: 5%;
+  margin-right: 2%;
+}
+.item-4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  background-color: #3b3936;
+  color: white;
+  height: 4vh;
+  display: fixed;
+  bottom: 0;
+}
+
+.card {
+  padding: 10px;
+  border: none;
+  max-height: 90vh;
+  overflow-y: auto;
+  background-color: #67998905;
+  position: relative;
+}
+.accordion-button:active {
+  background-color: white !important;
+}
+.card-body {
+  padding: 15px;
+  max-height: 800px;
+  overflow-y: auto;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+div {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+  font-family: "Open Sans", sans-serif;
+  font-size: 32px;
+  font-weight: bold;
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-1 > .btn,
+.item-8 > .btn,
+.item-4 > .btn {
+  margin: 10px;
+  max-width: 100%;
+}
+
+.btn {
+  background-color: white;
+  color: #3b3936;
+  border: 1px #3b3936 solid;
+  max-width: 200px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+.item-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100vh;
+  align-items: justify;
+  justify-content: end;
+}
+#admin:hover {
+  background-color: white;
+  color: #ca464b;
+  font-weight: bold;
+  border: 1px;
+  border: 1px #ca464b solid;
+}
+#admin:active {
+  font-weight: bold;
+  border: none;
+}
+#admin {
+  min-width: 120px;
+  margin: 10px;
+  background-color: #3b3936;
+  color: white;
+  font-size: 14px;
+}
+#exit {
+  background-color: #3b3936;
+  color: white;
+  margin: 10px;
+  font-size: 14px;
+}
+#exit:hover {
+  background-color: white;
+  color: #ca464b;
+  font-weight: bold;
+  border: 1px #ca464b solid;
+}
+.dropdown-item:active {
+  background-color: #ca464b;
+  color: white;
+}
+#exit:active {
+  background-color: #ca464b;
+  color: white;
+  font-weight: bold;
+  border: 1px black solid;
+  border: none;
+}
+
+.btn:hover {
+  background-color: #ca464b;
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+.btn:active {
+  background-color: white !important;
+  color: #ca464b !important;
+  font-weight: bold !important;
+}
+.dropdown {
+  margin: 10%;
+}
+#dropdownMenuButton {
+  width: 170px;
+}
+.dropdown:first-child {
+  margin-top: 23%;
+}
+.card-header {
+  margin-bottom: 10px;
+  background-color: white;
+}
+.list > img {
+  float: left;
+  min-width: 100px;
+}
+p {
+  text-align: justify;
+}
+img {
+  border-radius: 10px;
+  max-width: 400px;
+  margin-right: 5%;
+}
+
+@@media (max-width: 1300px) {
+  img {
+    max-width: 300px;
+  }
+  .title {
+    min-height: 40px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #dropdownMenuButton {
+    max-width: 130px;
+    font-size: 12px !important;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+@@media (max-width: 1100px) {
+  img {
+    max-width: 210px;
+    margin-bottom: 10%;
+  }
+  .title {
+    min-height: 40px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+@@media (max-width: 600px) {
+  img {
+    max-width: 150px;
+    margin-right: 40%;
+    margin-bottom: 10%;
+  }
+}
+
+@@media (max-width: 1000px) {
+  .item-1 {
+    display: none;
+  }
+  .itemAll {
+    gap: 3px;
+  }
+  .item-1 {
+    min-width: 150px;
+  }
+  .item-2,
+  .item-3 {
+    min-width: 250px;
+  }
+  .item-2 {
+    grid-column: span 3;
+  }
+}
+</style>
+
+<body>
+    <div class="itemAll main">
+        <div class="item item-1">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        id="dropdownMenuButton">
+                    Evrak işleri
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Evrak Takip</a></li>
+                    <li><a class="dropdown-item" href="#">Teminat Takip</a></li>
+                    <li><a class="dropdown-item" href="#">Sözleşme Takip</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        id="dropdownMenuButton">
+                    Sigorta Durumları
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Sgk Takip</a></li>
+                    <li><a class="dropdown-item" href="#">Sigorta Poliçeleri</a></li>
+                    <li><a class="dropdown-item" href="#">Taahhüd Süresi Takip</a></li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        id="dropdownMenuButton">
+                    Personel Bilgileri
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Personel İş Takip</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Personel Görevlendirme</a>
+                    </li>
+                    <li><a class="dropdown-item" href="#">Özlük Dosyaları</a></li>
+                    <li><a class="dropdown-item" href="#">Yıllık İzinler</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Personel Çalışma Saatleri</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        id="dropdownMenuButton">
+                    Muhasebe İşleri
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Fatura Takip</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Nakit Kasa<</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                        id="dropdownMenuButton">
+                    Harcamalar
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#">Aykimtaş</a></li>
+                    <li>
+                        <a class="dropdown-item" href="#">Eta Kırtasiye</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Eta Kırtasiye</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Üniversite Onay</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="item-footer">
+                <div id="admin" class="btn btn-primary">Admin Panel</div>
+                <div id="exit" class="btn btn-primary">Çıkış</div>
+            </div>
+        </div>
+
+        <div class="item item-2">
+            <div class="card">
+                <div class="card-header" style="border-radius: 50px">
+                    <h3 class="title">
+                        <i class="bi bi-megaphone"
+                           style="margin-right: 15px; margin-bottom: 6px"></i>Güncel Duyurular
+                    </h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                <button class="accordion-button"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne"
+                                        aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne"
+                                        style="font-weight: bold">
+                                    Deneme 1
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne"
+                                 class="accordion-collapse collapse show"
+                                 aria-labelledby="panelsStayOpen-headingOne">
+                                <div class="accordion-body">
+                                    <div class="list list-1">
+                                        <img src="./images/firstImage.jpg" alt="" />
+                                        <p>
+                                            Lorem ipsum dolor sit, amet consectetur adipisicectetur
+                                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                                            consectetur adipisicectetur adipisicing elit. Opectetur
+                                            adipisium dolor sit, amet consectetur adipisicectetur
+                                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                                            consectetur adipisicectetur adipisicing elit. Opectetur
+                                            adipisicing elit. Oping elisit, amet consectetur
+                                            adipisicectetur adipisicing elit. Opectetur adipisium
+                                            dolor sit, amet consectetur adipisicectetur adipisicing
+                                            elit. Opectetur adipisicing elit. Oping elisit, amet
+                                            consectetur adipisicectetur adipisicing elit. Opectetur
+                                            adipisium dolor sit, amet consectetur adipisicectetur
+                                            adipisicing elit. Opectetur adipisicing elit. Oping
+                                            elit. Optio, qui!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                <button class="accordion-button collapsed"
+                                        type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseTwo"
+                                        aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseTwo"
+                                        style="font-weight: bold">
+                                    Deneme 2
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTwo"
+                                 class="accordion-collapse collapse"
+                                 aria-labelledby="panelsStayOpen-headingTwo">
+                                <div class="accordion-body">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                                        Numquam molestias at neque rem omnis libero expedita iusto
+                                        repellat reprehenderit. Ipsum.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="item item-3">
+            <div class="card">
+                <div class="card-header"
+                     style="background-color: #ca464b; border-radius: 50px; color: white">
+                    <h3 class="title">
+                        <i class="bi bi-exclamation-triangle"
+                           style="margin-right: 10px; margin-bottom: 6px"></i>
+                        Uyarılar
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <div class="list list-1">
+                        <img src="8.jpg" alt="" />
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicectetur
+                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                            consectetur adipisicectetur adipisicing elit. Opectetur
+                            adipisium dolor sit, amet consectetur adipisicectetur
+                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                            consectetur adipisicectetur adipisicing elit. Opectetur
+                            adipisicing elit. Oping elisit, amet consectetur adipisicectetur
+                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                            consectetur adipisicectetur adipisicing elit. Opectetur
+                            adipisicing elit. Oping elisit, amet consectetur adipisicectetur
+                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                            consectetur adipisicectetur adipisicing elit. Opectetur
+                            adipisicing elit. Oping elit. Optio, qui!
+                        </p>
+                    </div>
+                    <hr style="border: 1px black dashed" />
+                    <div class="list list-2">
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicectetur
+                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                            consectetur adipisicectetur adipisicing elit. Opectetur
+                            adipisium dolor sit, amet consectetur adipisicectetur
+                            adipisicing elit. Opectetur adipisium dolor sit, amet
+                        </p>
+                    </div>
+                    <hr />
+                </div>
+            </div>
+        </div>
+
+        <div class="item item-4"></div>
     </div>
-}
-<div class="text-center">
-    <h2>Denemeee</h2>
-</div>
+    <footer class="footer">
+        <div>Copyright © Semih Baler. Tüm hakları saklıdır.</div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+</body>
+</html>
